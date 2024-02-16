@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 
 @Entity(name = "Cursant")
-@Table(name = "cursant",indexes = @Index(columnList = "curs"))
+@Table(name = "cursant")
 public class Cursant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "cursant_generator")

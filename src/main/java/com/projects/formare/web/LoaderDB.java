@@ -82,7 +82,6 @@ public class LoaderDB {
 //    @Qualifier(value ="secondary")
     public ResponseEntity<List<DTOAll>> getDTOCursanti(){
         try{
-            System.out.println("-----------------------------------------");
             return ResponseEntity.ok(dtoCursantRepo.mygetAll());
         }catch (RuntimeException e){
             throw e;

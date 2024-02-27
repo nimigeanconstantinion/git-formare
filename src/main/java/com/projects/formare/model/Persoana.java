@@ -35,11 +35,15 @@ public class Persoana {
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Adresa> adresaList;
 
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Studii> studiiList;
 
 
     public Persoana(String cnp){
         this.cnp=cnp;
     }
+
+
     @Override
     public boolean equals(Object p){
         Persoana pr=(Persoana) p;

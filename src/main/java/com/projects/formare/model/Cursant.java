@@ -29,11 +29,15 @@ public class Cursant {
     private String nrContract;
     private LocalDateTime dataContract;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<PerioadaSomaj> perioadaSomajList;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<StareCursant> stareCursantList;
+
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private List<Certificat> certificatList;
+
 
     private float mediaCurs;
     private float medieExamenAbs;

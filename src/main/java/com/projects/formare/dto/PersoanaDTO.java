@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @Getter
 
+
 public class PersoanaDTO {
 
     private String cnp;

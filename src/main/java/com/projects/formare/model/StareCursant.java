@@ -22,4 +22,6 @@ public class StareCursant {
     private StarePers starePers;
     private LocalDateTime dataStare;
 
+    @OneToOne
+    private MotivNeabsolvire motivNeabsolvire;
 }

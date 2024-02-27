@@ -1,12 +1,12 @@
 {
-"configurations": [
-    {
-      "name": "Spring Boot App",
-      "type": "spring-boot",
-      "mainClass": "com.projects.formare.FormareApplication",
-      "module": "", // Optional if no submodules
-      "activeProfiles": ["dev"], // Optional, comma-separated profile names
-            "debugMode": true // Optional, enables debugging
-        }
+    "configurations": [
+        {
+            "type": "spring-boot",
+            "name": "Spring-boot configuration",
+            "mainClass": "com.projects.formare.FormareApplication",
+            "module": "",
+            "activeProfiles": ["dev"],
+        },
+
     ]
 }

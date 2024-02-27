@@ -19,10 +19,14 @@ public class Studii {
     @SequenceGenerator(name = "studii_generator", allocationSize = 1)
     private long id;
 
-    private Isced isced;
-    private int codStudii;
+    @ManyToOne
+    private Persoana persoana;
 
-    private String denumire;
+    private Isced isced;
+
+    @ManyToOne
+    private NomenclatorStudii nomStudii;
+
     private LocalDateTime dataAbs;
 
 }

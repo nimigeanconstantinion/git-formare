@@ -45,7 +45,7 @@ public class Autorizatie {
     private int totalOre,oreTeorie,orePractica;
 
 
-    @OneToOne
+    @ManyToOne
     private Nomenclator nomenclator;
 
     private String bazaLegala;
@@ -57,6 +57,5 @@ public class Autorizatie {
 
     @ElementCollection
     private List<String> competente;
-
-
+    
 }

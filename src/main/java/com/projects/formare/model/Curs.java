@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -24,15 +25,18 @@ public class Curs {
     @Column(name = "codCurs",unique = true)
     private int codCurs;
 
-    private LocalDateTime data_st;
-    private LocalDateTime data_sf;
-    private LocalDateTime data_ex;
+    private LocalDateTime dataStart;
+    private LocalDateTime dataSfarsit;
+    private LocalDateTime dataExamen;
 
-    private String furnizor;
-    private String codFiscal;
+    @ManyToOne
+    private Furnizor furnizor;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private List<Cursant> cursantList;
+
+    private String nrProcesVerbalExamen;
+    private Date dataProcesVerbalExamen;
 
     @OneToOne(fetch = FetchType.EAGER)
     private Autorizatie autorizatie;

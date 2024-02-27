@@ -54,7 +54,7 @@ public class DataSource2Config {
     public LocalContainerEntityManagerFactoryBean internalEntityManagerFactory(
             EntityManagerFactoryBuilder builder) {
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "create-drop");
         return builder
                 .dataSource(dataSource())
                 .packages("com.projects.formare.dto")

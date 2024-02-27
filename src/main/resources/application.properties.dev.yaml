@@ -1,14 +1,14 @@
 spring:
   datasource:
     datasource1:
-      url: jdbc:mysql://localhost:3306/formare_db?seUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      url: jdbc:mysql://codeplus.ddns.net:3306/formare_db?seUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
       username: root
-      password: root
+      password: R@0t
 
     datasource2:
-      url: jdbc:mysql://localhost:3306/dtoschema?seUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      url: jdbc:mysql://codeplus.ddns.net:3306/dtoschema?seUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
       username: root
-      password: root
+      password: R@0t
   jpa:
     datasource1:
       hibernate:
@@ -18,7 +18,7 @@ spring:
         hibernate.format_sql: true
     datasource2:
       hibernate:
-        ddl-auto: update
+        ddl-auto: create-drop
       properties:
         hibernate-dialect: org.hibernate.dialect.MySQL5Dialect
         hibernate.format_sql: true

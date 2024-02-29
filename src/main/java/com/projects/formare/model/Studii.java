@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -22,11 +23,17 @@ public class Studii {
     @ManyToOne
     private Persoana persoana;
 
-    private Isced isced;
+
 
     @ManyToOne
     private NomenclatorStudii nomStudii;
 
-    private LocalDateTime dataAbs;
+    private Date dataAdd;
+
+    public Studii(Studii s){
+        this.id=s.getId();
+        this.nomStudii=s.getNomStudii();
+        this.dataAdd=s.getDataAdd();
+    }
 
 }

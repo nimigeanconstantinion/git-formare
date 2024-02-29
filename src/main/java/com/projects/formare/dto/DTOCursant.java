@@ -16,7 +16,7 @@ import java.util.Date;
 
 
 @Entity(name = "DTOCursant")
-@Table(name = "cursanti")
+//@Table(name = "cursanti")
 
 
 //@PersistenceContext(name = "secondary",unitName = "secondary")

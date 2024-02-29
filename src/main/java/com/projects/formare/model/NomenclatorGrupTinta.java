@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,6 +23,9 @@ public class NomenclatorGrupTinta {
 
     private int cod;
     private String denumire;
+
+    private boolean activ;
+    private Date dataActivarii;
 
 
 }

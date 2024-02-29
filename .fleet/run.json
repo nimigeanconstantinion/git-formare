@@ -5,7 +5,7 @@
             "name": "Spring-boot configuration",
             "mainClass": "com.projects.formare.FormareApplication",
             "module": "",
-            "activeProfiles": ["dev"],
+            "activeProfiles": ["dev"]
         },
 
     ]

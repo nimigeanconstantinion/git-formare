@@ -15,15 +15,15 @@ import java.util.List;
 
 @Entity(name = "Curs")
 @Table(name = "curs",indexes = {
-        @Index(columnList = "codCurs",unique = true)})
+        @Index(columnList = "nrCurs",unique = true)})
 public class Curs {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "curs_generator")
     @SequenceGenerator(name = "curs_generator",initialValue = 1,allocationSize = 1)
     private long id;
 
-    @Column(name = "codCurs",unique = true)
-    private int codCurs;
+    @Column(name = "nrCurs",unique = true)
+    private int nrCurs;
 
     private LocalDateTime dataStart;
     private LocalDateTime dataSfarsit;

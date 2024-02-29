@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -20,9 +21,9 @@ public class NomenclatorStudii {
     private long id;
 
     private int codStudii;
-
+    private Isced isced;
     private String denumire;
     private boolean active;
-    private LocalDateTime dataActivarii;
-    private LocalDateTime dataModificarii;
+    private Date dataActivarii;
+    private Date dataModificarii;
 }

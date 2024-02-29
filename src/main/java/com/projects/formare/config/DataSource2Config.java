@@ -54,11 +54,11 @@ public class DataSource2Config {
     public LocalContainerEntityManagerFactoryBean internalEntityManagerFactory(
             EntityManagerFactoryBuilder builder) {
         Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.hbm2ddl.auto", "none");
         return builder
                 .dataSource(dataSource())
                 .packages("com.projects.formare.dto")
-//                .persistenceUnit("db1")
+                .persistenceUnit("db2")
                 .properties(properties)
                 .build();
     }

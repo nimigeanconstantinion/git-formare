@@ -64,8 +64,8 @@ public class DataSource1Config {
         properties.put("hibernate.hbm2ddl.auto", "update");
         return builder
                 .dataSource(dataSource())
-                .packages("com.projects.formare.model","com.projects.formare.dto")
-//                .persistenceUnit("db1")
+                .packages("com.projects.formare.model")
+                .persistenceUnit("db1")
                 .properties(properties)
                 .build();
     }

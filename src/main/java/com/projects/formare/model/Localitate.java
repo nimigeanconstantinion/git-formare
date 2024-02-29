@@ -20,5 +20,5 @@ public class Localitate {
     private double sirutasup;
     private int tip;
     private String denumireLocalitate;
-    private String judet;
+    private int judet;
 }

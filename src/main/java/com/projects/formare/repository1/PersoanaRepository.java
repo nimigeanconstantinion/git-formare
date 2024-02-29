@@ -16,6 +16,6 @@ import java.util.Optional;
 public interface PersoanaRepository extends JpaRepository<Persoana,Long> {
 
     @Query(value = "select c from Persoana c where c.cnp=?1")
-    Optional<Cursant> findCursantByCursCNP(String cnp);
+    Optional<Persoana> findPersoanaByCNP(String cnp);
 
 }

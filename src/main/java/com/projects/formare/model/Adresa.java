@@ -3,6 +3,8 @@ package com.projects.formare.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,8 +15,8 @@ import lombok.*;
 @Table(name = "adresa")
 public class Adresa {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "adr_generator")
-    @SequenceGenerator(name = "adr_generator",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "adr_generator")
+    @SequenceGenerator(name = "adr_generator", allocationSize = 1)
     private long id;
 
     @OneToOne
@@ -33,6 +35,7 @@ public class Adresa {
     private String ap;
     private String tel;
     private String email;
+    private Date dateAdd;
 
 
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Qualifier("dataSource1")
-public interface AdresaRepository extends JpaRepository<Adresa,Long> {
-    
+public interface AdresaRepository extends JpaRepository<Adresa, Long> {
+
 }

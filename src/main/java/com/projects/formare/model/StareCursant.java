@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
 public class StareCursant {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "starecursant_gen")
-    @SequenceGenerator(name = "starecursant_gen",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "starecursant_gen")
+    @SequenceGenerator(name = "starecursant_gen", allocationSize = 1)
     private long id;
 
     private StarePers starePers;

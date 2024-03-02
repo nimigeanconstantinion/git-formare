@@ -14,15 +14,15 @@ import java.util.List;
 @Getter
 
 @Entity(name = "Curs")
-@Table(name = "curs",indexes = {
-        @Index(columnList = "nrCurs",unique = true)})
+@Table(name = "curs", indexes = {
+        @Index(columnList = "nrCurs", unique = true)})
 public class Curs {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "curs_generator")
-    @SequenceGenerator(name = "curs_generator",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "curs_generator")
+    @SequenceGenerator(name = "curs_generator", initialValue = 1, allocationSize = 1)
     private long id;
 
-    @Column(name = "nrCurs",unique = true)
+    @Column(name = "nrCurs", unique = true)
     private int nrCurs;
 
     private LocalDateTime dataStart;
@@ -32,7 +32,7 @@ public class Curs {
     @ManyToOne
     private Furnizor furnizor;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Cursant> cursantList;
 
     private String nrProcesVerbalExamen;
@@ -42,14 +42,14 @@ public class Curs {
     private Autorizatie autorizatie;
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Nomenclator nomenclator ;
+    private Nomenclator nomenclator;
 
-    public void addCursant(Cursant c){
+    public void addCursant(Cursant c) {
 
         this.cursantList.add(c);
     }
 
-    public void removeCursant(Cursant c){
+    public void removeCursant(Cursant c) {
 
         this.cursantList.remove(c);
     }

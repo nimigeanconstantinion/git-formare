@@ -24,16 +24,15 @@ public class Studii {
     private Persoana persoana;
 
 
-
     @ManyToOne
     private NomenclatorStudii nomStudii;
 
     private Date dataAdd;
 
-    public Studii(Studii s){
-        this.id=s.getId();
-        this.nomStudii=s.getNomStudii();
-        this.dataAdd=s.getDataAdd();
+    public Studii(Studii s) {
+        this.id = s.getId();
+        this.nomStudii = s.getNomStudii();
+        this.dataAdd = s.getDataAdd();
     }
 
 }

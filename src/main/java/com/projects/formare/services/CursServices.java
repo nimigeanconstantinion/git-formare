@@ -4,6 +4,7 @@ import com.projects.formare.dto.DTOAll;
 import com.projects.formare.model.*;
 import com.projects.formare.repository1.*;
 import com.projects.formare.repository2.DTOAllRepo;
+import com.projects.formare.utils.MatchString;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,8 @@ public class CursServices {
     private NomStudiiRepository nomStudiiRepository;
     private DTOAllRepo dtoAllRepo;
 
+    private LocalitateRepository localitateRepository;
+
 
     public CursServices(CursRepository cursRepository,
                         CursantRepository cursantRepository,
@@ -32,108 +35,132 @@ public class CursServices {
                         AutorizatieRepository autorizatieRepository,
                         NomenclatorRepository nomenclatorRepository,
                         DTOAllRepo dtoAllRepo,
-                        NomStudiiRepository nomStudiiRepository){
-        this.autorizatieRepository=autorizatieRepository;
-        this.cursantRepository=cursantRepository;
-        this.cursRepository=cursRepository;
-        this.nomenclatorRepository=nomenclatorRepository;
-        this.persoanaRepository=persoanaRepository;
-        this.dtoAllRepo=dtoAllRepo;
-        this.nomStudiiRepository=nomStudiiRepository;
+                        NomStudiiRepository nomStudiiRepository,
+                        LocalitateRepository localitateRepository) {
+        this.autorizatieRepository = autorizatieRepository;
+        this.cursantRepository = cursantRepository;
+        this.cursRepository = cursRepository;
+        this.nomenclatorRepository = nomenclatorRepository;
+        this.persoanaRepository = persoanaRepository;
+        this.dtoAllRepo = dtoAllRepo;
+        this.nomStudiiRepository = nomStudiiRepository;
+        this.localitateRepository = localitateRepository;
     }
-
 
 
     public void addPersoane() throws CloneNotSupportedException {
-      try{
+        try {
 
-          final List<DTOAll> lista=dtoAllRepo.findAll();
-          System.out.println(lista.size());
-          List<Persoana> listap=new ArrayList<>();
-          int k=0;
-          for (DTOAll e: lista) {
-              Persoana p=new Persoana();
+            final List<DTOAll> lista = dtoAllRepo.findAll();
+            System.out.println(lista.size());
+            List<Persoana> listap = new ArrayList<>();
+            int k = 0;
+            for (DTOAll e : lista) {
+                Persoana p = new Persoana();
 
 
-              p.setCnp(e.getCnp());
-              p.addNume(e.getNume());
-              p.setPrenume(e.getPrenume());
-              p.setPrenumeMama(e.getPrenmama());
-              p.setPrenumeTata(e.getPrentata());
-              p.setLocalitateNastere(e.getLocn());
-              p.setJudetNastere(e.getJudn());
-              int codStudii=0;
-              if(e.getCodstudii().isEmpty()){
-                  codStudii=0;
-              }else{
-                  codStudii=Integer.valueOf(e.getCodstudii());
+                p.setCnp(e.getCnp());
+                p.addNume(e.getNume());
+                p.setPrenume(e.getPrenume());
+                p.setPrenumeMama(e.getPrenmama());
+                p.setPrenumeTata(e.getPrentata());
+                p.setLocalitateNastere(e.getLocn());
+                p.setJudetNastere(e.getJudn());
+                p.setAdresaList(new ArrayList<>());
+                int codStudii = 0;
+                if (e.getCodstudii().isEmpty()) {
+                    codStudii = 0;
+                } else {
+                    codStudii = Integer.valueOf(e.getCodstudii());
 
-              }
-              Studii s=new Studii();
-              Optional<NomenclatorStudii> ss=nomStudiiRepository.getNomStudiiByCod(codStudii);
-              if(ss.isPresent()){
+                }
+                Studii s = new Studii();
+                Optional<NomenclatorStudii> ss = nomStudiiRepository.getNomStudiiByCod(codStudii);
+                if (ss.isPresent()) {
 
-                  s.setPersoana(p);
-                  s.setNomStudii(ss.get());
-                  s.setDataAdd(e.getData1());
-                  p.addStud(s);
-              }
+                    s.setPersoana(p);
+                    s.setNomStudii(ss.get());
+                    s.setDataAdd(e.getData1());
+                    p.addStud(s);
+                }
 
-              Adresa adresa=new Adresa();
-              adresa.setLocalitateInf(e.getLocinf());
-              adresa.setLocaSup(e.getLocsup());
-              adresa.setJudet(e.getJud());
-              adresa.setStrada(e.getStrada());
-              adresa.setNrStrada(e.getNrstr());
-              adresa.setBlCasa(e.getBloc());
-              adresa.setEt(e.getEt());
-              adresa.setAp(e.getAp());
-              adresa.setTel(e.getTel());
-              adresa.setEmail("");
 
-              if(e.getCnp().trim().length()>=13){
+                if (e.getCnp().trim().length() >= 13) {
 
-                  Optional<Persoana> isp=persoanaRepository.findPersoanaByCNP(p.getCnp());
+                    Adresa adres = new Adresa();
 
-                  if(isp.isEmpty()){
-                      persoanaRepository.saveAndFlush(p);
-                  }else{
-                      Persoana newp=(Persoana) isp.get().clone();
+                    adres.setLocalitateInf(e.getLocinf());
+                    adres.setLocaSup(e.getLocsup());
+                    adres.setJudet(e.getJud());
+                    adres.setStrada(e.getStrada());
+                    adres.setNrStrada(e.getNrstr());
+                    adres.setBlCasa(e.getBloc());
+                    adres.setEt(e.getEt());
+                    adres.setAp(e.getAp());
+                    adres.setTel(e.getTel());
+                    adres.setEmail("");
+                    adres.setDateAdd(new Date());
+                    Optional<Localitate> siru = localitateRepository.findByLocalitate()
+                    System.out.println("-------Localitate=" + adres.getLocalitateInf());
+                    System.out.println("match=" + MatchString.similarity("Serbauti", "Batiures"));
+                    System.out.printf("Șerbăuți devine=" + MatchString.removeDiacritics("Șerbăuți"));
 
-                      if(newp.getNume().contains(e.getNume())==false){
-                          newp.addNume(e.getNume());
+                    p.addAdresa(adres);
 
-                      }
-                      if(newp.getStudiiList().stream()
-                              .filter(o->o.getNomStudii().getCodStudii()==Integer.valueOf(e.getCodstudii()))
-                              .collect(Collectors.toList()).size()>0){
-                          s.setPersoana(newp);
-                          newp.addStud(s);
-                      }
-                      persoanaRepository.save(newp);
+                    Optional<Persoana> isp = persoanaRepository.findPersoanaByCNP(p.getCnp());
+
+                    if (isp.isEmpty()) {
+                        persoanaRepository.saveAndFlush(p);
+                    } else {
+                        Persoana newp = (Persoana) isp.get().clone();
+
+                        if (newp.getNume().contains(e.getNume()) == false) {
+                            newp.addNume(e.getNume());
+
+                        }
+                        if (newp.getStudiiList().stream()
+                                .filter(o -> o.getNomStudii().getCodStudii() == Integer.valueOf(e.getCodstudii()))
+                                .collect(Collectors.toList()).size() > 0) {
+                            s.setPersoana(newp);
+                            newp.addStud(s);
+                        }
+
+                        List<Adresa> listaa = new ArrayList<>();
+                        newp.getAdresaList().stream().filter(ad -> {
+                            if (ad.getLocalitateInf().equals(e.getLocinf())
+                                    || ad.getNrStrada().equals(e.getNrstr())
+                                    || ad.getLocaSup().equals(e.getLocsup())
+                                    || ad.getBlCasa().equals(e.getBloc())) {
+                                return true;
+                            }
+                            listaa.add(ad);
+                            return false;
+                        });
+
+                        if (listaa.size() == 0) {
+                            newp.addAdresa(p.getAdresaList().get(0));
+                        }
+                        persoanaRepository.save(newp);
 //                  persoanaRepository.flush();
-                  }
+                    }
 
-                  System.out.println(p.getNume().get(0)+" "+p.getCnp());
-                  k++;
-                  if(k>10){
-                      break;
-                  }
-              }
-
-
-
-          }
+                    System.out.println(p.getNume().get(0) + " " + p.getCnp() + " loca=" + p.getAdresaList().get(0));
+//                    k++;
+//                    if (k > 6) {
+//                        break;
+//                    }
+                }
 
 
-          System.out.println(listap.size());
-      }catch (Exception e){
-          throw e;
-      }
+            }
+
+            System.out.println(listap.size());
+        } catch (Exception e) {
+            throw e;
+        }
 
 
     }
 
 
-    
 }

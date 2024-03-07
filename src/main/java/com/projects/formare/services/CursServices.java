@@ -58,7 +58,7 @@ public class CursServices {
             for (DTOAll e : lista) {
                 Persoana p = new Persoana();
 
-
+                System.out.println("Index ="+lista.indexOf(e)+"/"+lista.size());
                 p.setCnp(e.getCnp());
                 p.addNume(e.getNume());
                 p.setPrenume(e.getPrenume());
@@ -89,7 +89,7 @@ public class CursServices {
 
                     Adresa adres = new Adresa();
 
-                    adres.setLocalitateInf(e.getLocinf());
+                    adres.setLocaInf(e.getLocinf());
                     adres.setLocaSup(e.getLocsup());
                     adres.setJudet(e.getJud());
                     adres.setStrada(e.getStrada());
@@ -100,12 +100,19 @@ public class CursServices {
                     adres.setTel(e.getTel());
                     adres.setEmail("");
                     adres.setDateAdd(new Date());
-                    Optional<Localitate> siru = localitateRepository.findByLocalitate()
-                    System.out.println("-------Localitate=" + adres.getLocalitateInf());
-                    System.out.println("match=" + MatchString.similarity("Serbauti", "Batiures"));
-                    System.out.printf("Șerbăuți devine=" + MatchString.removeDiacritics("Șerbăuți"));
+//                    Optional<Localitate> siru = localitateRepository.findByLocalitate();
+                    int codJud = 0;
+                    codJud = localitateRepository.findJud(e.getJud());
+//                    System.out.println("Judet="+e.getJud()+" cu codul="+codJud);
+                    List<Localitate> siru = localitateRepository.findAllByLocaCodJud(codJud, e.getLocinf());
+//                    System.out.println("---- adaug Loca=" + e.getLocinf() + " din jud=" + e.getJud());
+                    if (siru.size() > 0) {
+                        adres.setLocalitate(siru.get(0));
+//                       System.out.println("-------din siruta=" + adres.getLocalitate().getDenumireLocalitate());
 
+                    }
                     p.addAdresa(adres);
+
 
                     Optional<Persoana> isp = persoanaRepository.findPersoanaByCNP(p.getCnp());
 
@@ -127,7 +134,7 @@ public class CursServices {
 
                         List<Adresa> listaa = new ArrayList<>();
                         newp.getAdresaList().stream().filter(ad -> {
-                            if (ad.getLocalitateInf().equals(e.getLocinf())
+                            if (ad.getLocaInf().equals(e.getLocinf())
                                     || ad.getNrStrada().equals(e.getNrstr())
                                     || ad.getLocaSup().equals(e.getLocsup())
                                     || ad.getBlCasa().equals(e.getBloc())) {
@@ -144,11 +151,15 @@ public class CursServices {
 //                  persoanaRepository.flush();
                     }
 
-                    System.out.println(p.getNume().get(0) + " " + p.getCnp() + " loca=" + p.getAdresaList().get(0));
+                    Optional<Curs> curs = cursRepository.findCursByNrCurs(e.getCurs());
+
+
+
+//                    System.out.println(p.getNume().get(0) + " " + p.getCnp() + " loca=" + p.getAdresaList().get(0).getLocalitate().getDenumireLocalitate());
 //                    k++;
-//                    if (k > 6) {
-//                        break;
-//                    }
+                    if (k > 100) {
+                        break;
+                    }
                 }
 
 

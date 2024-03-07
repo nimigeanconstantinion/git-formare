@@ -19,9 +19,10 @@ public class Adresa {
     @SequenceGenerator(name = "adr_generator", allocationSize = 1)
     private long id;
 
-    @OneToOne
-    private Localitate localitateInfo;
-    private String localitateInf;
+    @ManyToOne
+    private Localitate localitate;
+
+    private String locaInf;
     private String locaSup;
     private String judet;
 

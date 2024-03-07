@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,29 +21,29 @@ import java.util.List;
 
 public class Autorizatie {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "aut_generator")
-    @SequenceGenerator(name = "aut_generator",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "aut_generator")
+    @SequenceGenerator(name = "aut_generator", initialValue = 1, allocationSize = 1)
     private Long id;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "aut_nomcor",
-//            joinColumns = @JoinColumn(name = "autorizatie_id"),
-//            inverseJoinColumns = @JoinColumn(name = "nomenclator_id")
-//    )
-//    private List<Nomenclator> nomenclatorList;
+    //    @ManyToMany
+    //    @JoinTable(
+    //            name = "aut_nomcor",
+    //            joinColumns = @JoinColumn(name = "autorizatie_id"),
+    //            inverseJoinColumns = @JoinColumn(name = "nomenclator_id")
+    //    )
+    //    private List<Nomenclator> nomenclatorList;
 
     private String nrAutorizatie;
-    private LocalDateTime dataAutorizatie;
-    private LocalDateTime dataExpirarii;
+    private Date dataAutorizatie;
+    private Date dataExpirarii;
 
     private String nrRNFPA;
-    private LocalDateTime dataRNFPA;
+    private Date dataRNFPA;
 
 
     private TipCurs tipCurs;
 
-    private int totalOre,oreTeorie,orePractica;
+    private int totalOre, oreTeorie, orePractica;
 
 
     @ManyToOne
@@ -52,10 +53,25 @@ public class Autorizatie {
     private String condAcces;
 
     private String notare;
-    
+
     private int nivel;
 
     @ElementCollection
-    private List<String> competente;
-    
+    private List<String> competente = new ArrayList<>();
+
+    private LocalDateTime dateAdd;
+
+
+    public void addCompetenta(String comp) {
+        if (!this.competente.contains(comp)) {
+            this.competente.add(comp);
+
+        }
+    }
+
+    public void delCompet(String comp) {
+        if (this.competente.contains(comp)) {
+            this.competente.remove(comp);
+        }
+    }
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -16,35 +17,33 @@ import java.util.List;
 @Table(name = "cursanti")
 public class Cursant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "cursant_generator")
-    @SequenceGenerator(name = "cursant_generator",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "cursant_generator")
+    @SequenceGenerator(name = "cursant_generator", allocationSize = 1)
     private long id;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Persoana persoana;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Curs curs;
 
     private String nrContract;
-    private LocalDateTime dataContract;
+    private Date dataContract;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<PerioadaSomaj> perioadaSomajList;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<StareCursant> stareCursantList;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Certificat> certificatList;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CursantGrupTinta> cursantGrupTintaList;
 
     private float mediaCurs;
     private float medieExamenAbs;
-
-
 
 
 }

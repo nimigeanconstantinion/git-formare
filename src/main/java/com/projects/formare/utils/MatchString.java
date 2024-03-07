@@ -1,5 +1,7 @@
 package com.projects.formare.utils;
 
+import java.util.List;
+
 public class MatchString {
     private static final int INSERTION_COST = 1;
     private static final int DELETION_COST = 1;
@@ -50,4 +52,11 @@ public class MatchString {
         return text;
     }
 
+
+    public static List<String> getWords(String sir) {
+        String regex = "[\\s.,_\\-/]+"; // Regex care se potrivește cu spații, puncte, virgule, liniuțe de subliniere și bare
+        String[] words = sir.split(regex);
+
+        return List.of(words);
+    }
 }

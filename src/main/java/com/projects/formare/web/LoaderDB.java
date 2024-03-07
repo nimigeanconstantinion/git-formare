@@ -1,10 +1,12 @@
 package com.projects.formare.web;
 
+import com.projects.formare.dto.DTAutorizatie;
 import com.projects.formare.dto.DTOAll;
 import com.projects.formare.model.*;
 import com.projects.formare.repository1.*;
 //import com.projects.formare.repository2.DTOCursantRepo;
 import com.projects.formare.repository2.DTOAllRepo;
+import com.projects.formare.repository2.DTOAutorizRepo;
 import com.projects.formare.services.CursServices;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,8 @@ public class LoaderDB {
 
     private PersoanaRepository persoanaRepository;
 
+    private DTOAutorizRepo dtoAutorizRepo;
+
 
     public LoaderDB(LocalitateRepository localitateRepository,
                     NomenclatorRepository nomenclatorRepository,
@@ -40,7 +44,8 @@ public class LoaderDB {
                     DTOAllRepo dtoAllRepo,
                     PersoanaRepository persoanaRepository,
                     CursServices cursServices,
-                    NomStudiiRepository nomStudiiRepository){
+                    NomStudiiRepository nomStudiiRepository,
+                    DTOAutorizRepo dtoAutorizRepo){
         this.nomenclatorRepository=nomenclatorRepository;
         this.localitateRepository=localitateRepository;
         this.cursRepository=cursRepository;
@@ -48,6 +53,7 @@ public class LoaderDB {
         this.persoanaRepository=persoanaRepository;
         this.cursServices=cursServices;
         this.nomStudiiRepository=nomStudiiRepository;
+        this.dtoAutorizRepo=dtoAutorizRepo;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -138,6 +144,8 @@ public class LoaderDB {
         }catch (Exception e){
             throw e;
         }
+
+
     }
 
 
@@ -192,4 +200,40 @@ public class LoaderDB {
         }
     }
 
-}
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getlocas/{denLoc}/{jud}")
+    public ResponseEntity<List<Localitate>> getAllLocas(@PathVariable String denLoc,@PathVariable String jud) {
+
+        return ResponseEntity.ok(localitateRepository.findAllByLocaJud(denLoc,jud));
+
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getcodjud/{jud}")
+    public ResponseEntity<Integer> getCodJud(@PathVariable String jud) {
+
+        return ResponseEntity.ok(localitateRepository.findJud(jud));
+
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getlocdencodj/{jud}/{loca}")
+    public ResponseEntity<List<Localitate>> getAllLocasCodJud(@PathVariable int jud,@PathVariable String loca) {
+
+
+        System.out.println("jud="+jud+" loca="+loca);
+        return ResponseEntity.ok(localitateRepository.findAllByLocaCodJud(jud,loca));
+
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/getdtautoriz")
+    public ResponseEntity<List<DTAutorizatie>> getAllDTAutoriz() {
+
+
+        return ResponseEntity.ok(dtoAutorizRepo.findAll());
+
+    }
+
+    }

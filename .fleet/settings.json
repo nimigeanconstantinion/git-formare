@@ -1,0 +1,7 @@
+{
+    "autoSave": "OnFocus",
+    "java.debugger.reloadClassesAfterCompilation": "Always",
+    "run.destination.stop.already.running": "Ask",
+    "excluded": [],
+    "editor.guides": []
+}

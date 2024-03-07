@@ -1,15 +1,28 @@
 package com.projects.formare.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public enum TipCurs {
-    TIP1("competente comune"),
-    TIP2("perfectionare"),
-    TIP3("specializare"),
-    TIP4("initiere"),
-    T5("calificare");
+    COMPETENTE_COMUNE("competente comune"),
+    PERFECTIONARE("perfectionare"),
+    SPECIALIZARE("specializare"),
+    INITIERE("initiere"),
+    CALIFICARE("calificare");
     private String label;
 
     private TipCurs(String label) {
         this.label = label;
     }
 
+    public static TipCurs getByLabel(String lbl) {
+        if (lbl == null) {
+            return null;
+        }
+        Map<String, TipCurs> map = new HashMap<>();
+        for (TipCurs value : values()) {
+            map.put(value.label, value);
+        }
+        return map.get(lbl);
+    }
 }

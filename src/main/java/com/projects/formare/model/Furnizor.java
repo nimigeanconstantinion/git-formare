@@ -16,11 +16,12 @@ import lombok.*;
 
 public class Furnizor {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "gen_furnizor")
-    @SequenceGenerator(name = "gen_furniz",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_furnizor")
+    @SequenceGenerator(name = "gen_furniz", allocationSize = 1)
     private long id;
 
     private String denumire;
     private String codFiscal;
 
+    private TipFurnizor tipFurnizor;
 }

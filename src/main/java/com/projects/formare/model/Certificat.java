@@ -15,9 +15,12 @@ import java.util.Date;
 @Table(name = "certificate")
 public class Certificat {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "gen_certificat")
-    @SequenceGenerator(name = "gen_cert",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_certificat")
+    @SequenceGenerator(name = "gen_cert", allocationSize = 1)
     private long id;
+
+    private TipCertificat tipCertificat;
+
 
     private String serie;
     private String numar;
@@ -28,6 +31,7 @@ public class Certificat {
     private StareCertificat stareCertificat;
     private Date dataStare;
 
+    private boolean duplicat = false;
 
 
 }

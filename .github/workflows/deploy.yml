@@ -67,16 +67,16 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.NOIP_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          scp -o StrictHostKeyChecking=no ./docker-compose.yaml ec2-user@${{ env.EC2_INSTANCE_IP }}:/home/ec2-user/scripts/docker-compose.yaml
-          ssh -o StrictHostKeyChecking=no ec2-user@${{ env.EC2_INSTANCE_IP }} "\
-            cd /home/ec2-user/scripts/ && ./init.sh && \
-            CONTAINERS=$(podman container ls -aq) && \
+          scp -o StrictHostKeyChecking=no ./docker-compose.yaml ubuntus@${{ env.NOIP_INSTANCE_IP }}:/home/ubuntus/scripts/docker-compose.yaml
+          ssh -o StrictHostKeyChecking=no ubuntus@${{ env.NOIP_INSTANCE_IP }} "\
+            cd /home//scriptubuntuss/ && ./init.sh && \
+            CONTAINERS=$(docker container ls -aq) && \
             if [ ! -z \"$CONTAINERS\" ]; then \
-            podman container stop $CONTAINERS || true; \
-            podman container rm $CONTAINERS || true; \
+            docker container stop $CONTAINERS || true; \
+            docker container rm $CONTAINERS || true; \
             fi; \
             echo 'Starting new containers...'; \
-            podman-compose up -d; \
+            docker-compose up -d; \
             echo 'Deployment completed successfully.'"
         env:
           NOIP_SSH_PRIVATE_KEY: ${{ secrets.NOIP_SSH_PRIVATE_KEY }}

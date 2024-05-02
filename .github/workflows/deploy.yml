@@ -79,5 +79,5 @@ jobs:
             podman-compose up -d; \
             echo 'Deployment completed successfully.'"
         env:
-          EC2_SSH_PRIVATE_KEY: ${{ secrets.NOIP_SSH_PRIVATE_KEY }}
-          EC2_INSTANCE_IP: codeplus.ddns.net
+          NOIP_SSH_PRIVATE_KEY: ${{ secrets.NOIP_SSH_PRIVATE_KEY }}
+          NOIP_INSTANCE_IP: codeplus.ddns.net

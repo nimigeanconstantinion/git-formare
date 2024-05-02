@@ -15,16 +15,11 @@
 
 #docker buildx build \
 #    --platform=linux/amd64,linux/arm64 \
-#    -t "${USERNAME}/${REPO}:${TAG}" \
-#    -t "${USERNAME}/${REPO}:latest" \
+#    -t "${USERNAME}/${APPNAME}:${TAG}" \
+#    -t "${USERNAME}/${APPNAME}:latest" \
 #    "${@:2}" \
 #    --push \
 #    "$1"
 #    # Ensure this points to the directory with Dockerfile
 
-docker tag \
-  "${APPNAME}:latest" \
-  "${USERNAME}/${APPNAME}:${TAG}"
-    echo "OK: GATA TAG"
-
-docker push "${USERNAME}/${APPNAME}:${TAG}"
+docker tag formare-api "${USERNAME}/${APPNAME}:${TAG}"

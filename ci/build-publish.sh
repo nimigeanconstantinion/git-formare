@@ -9,16 +9,16 @@
 # Create a new builder instance and use it
 #docker buildx create --use
 #
-## Build and push the Docker image
-#
-#docker buildx build \
-#    --platform=linux/amd64,linux/arm64 \
-#    -t "${USERNAME}/${REPO}:${TAG}" \
-#    -t "${USERNAME}/${REPO}:latest" \
-#    "${@:2}" \
-#    --push \
-#    "$1"
-#    # Ensure this points to the directory with Dockerfile
-#
-docker tag "${USERNAME}/${APPNAME}" "${USERNAME}/${APPNAME}:${TAG}"
-docker push "${USERNAME}/${APPNAME}:${TAG}"
+# Build and push the Docker image
+
+docker buildx build \
+    --platform=linux/amd64,linux/arm64 \
+    -t "${USERNAME}/${REPO}:${TAG}" \
+    -t "${USERNAME}/${REPO}:latest" \
+    "${@:2}" \
+    --push \
+    "$1"
+    # Ensure this points to the directory with Dockerfile
+
+#docker tag "${USERNAME}/${APPNAME}" "${USERNAME}/${APPNAME}:${TAG}"
+#docker push "${USERNAME}/${APPNAME}:${TAG}"

@@ -30,6 +30,7 @@ jobs:
         run: |
           chmod +x ci/build-publish.sh
           USERNAME=ion21 \
+          APPNAME=formare-api \
           REPO=git-formare \
           TAG=${{ env.BUILD_NUMBER }} \
           ci/build-publish.sh ./

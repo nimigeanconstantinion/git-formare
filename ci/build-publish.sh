@@ -4,6 +4,7 @@
 : "${USERNAME:?USERNAME not set or empty}"
 : "${REPO:?REPO not set or empty}"
 : "${TAG:?TAG not set or empty}"
+: "${APPNAME:?APPNAME not set or empty}"
 
 # Create a new builder instance and use it
 #docker buildx create --use
@@ -19,5 +20,5 @@
 #    "$1"
 #    # Ensure this points to the directory with Dockerfile
 #
-docker tag "${USERNAME}/${REPO}" "${USERNAME}/${REPO}:${TAG}"
-docker push "${USERNAME}/${REPO}:${TAG}"
+docker tag "${USERNAME}/${APPNAME}" "${USERNAME}/${APPNAME}:${TAG}"
+docker push "${USERNAME}/${APPNAME}:${TAG}"

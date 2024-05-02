@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    datasource1:
+      jdbcurl: jdbc:mysql://codeplus.ddns.net:3306/formare_db?useSSL=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&useUnicode=true&createDatabaseIfNotExist=true
+      #      username: root
+      password: R@0t
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    datasource2:
+      url: jdbc:mysql://codeplus.ddns.net:3306/dtoschema?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      #      username: root
+      password: R@0t
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    datasource1:
+      properties:
+        hibernate-dialect: org.hibernate.dialect.MySQL5InnoDBDialect  # Assuming MySQL 5.5 or above
+      hibernate:
+        ddl-auto: update
+#      show-sql: true
+#      format-sql: true  # Consistent naming convention (lowercase hyphen)
+#    datasource2:
+#      hibernate:
+#        ddl-auto: none
+#      show-sql: true
+#      format-sql: true  # Consistent naming convention
+#  server:
+#    error:
+#      include-message: always
+#      include-binding-errors: always
+#    port: 8080

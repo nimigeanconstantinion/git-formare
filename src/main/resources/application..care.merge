@@ -1,0 +1,26 @@
+## Sursa de date 1
+spring.datasource.datasource1.jdbcUrl=jdbc:mysql://icode.mywire.org:3306/formare_db?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+spring.datasource.datasource1.username=root
+spring.datasource.datasource1.password=R@0t
+spring.datasource.datasource1.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.properties.datasource.datasource1.hibernate-dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.datasource1.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.open-in-view=false
+spring.jpa.properties.hibernate.enable_lazy_load_no_trans=true
+
+  ## Sursa de date 2
+spring.datasource.datasource2.jdbcUrl=jdbc:mysql://icode.mywire.org:3306/dtoschema?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+spring.datasource.datasource2.username=root
+spring.datasource.datasource2.password=R@0t
+spring.datasource.datasource2.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource2.jpa.properties.hibernate-dialect.=org.hibernate.dialect.MySQLDialect
+spring.jpa.hibernate.ddl-auto.datasource2=none
+spring.jpa.show-sql.datasource2=true
+spring.jpa.properties.hibernate.format_sql.datasource2=true
+
+
+server.error.include-message=always
+server.error.include-binding-errors=always
+server.port=8080

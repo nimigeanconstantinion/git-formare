@@ -24,4 +24,6 @@ public interface NomenclatorRepository extends JpaRepository<Nomenclator, Long> 
     List<Nomenclator> findByCompCom(String den);
 
 
+    @Query(value = "select n from Nomenclator n where n.cod=''")
+    List<Nomenclator> getCompetenteComune();
 }

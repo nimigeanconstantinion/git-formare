@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +17,7 @@ import java.util.List;
 
 @Entity(name = "Curs")
 @Table(name = "curs", indexes = {
-        @Index(columnList = "nrCurs", unique = true)})
+        @Index(columnList = "nrCurs,id", unique = true)})
 public class Curs {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "curs_generator")
@@ -53,7 +54,13 @@ public class Curs {
 
     private TipCertificat tipCertificat;
     private String responsabil;
+
+
     private String organizator;
+    private String codFiscalOrg;
+    private TipFurnizor tipFurnizor;
+
+
     private TipCurs tipCurs;
 
     private String nrDispozitie;
@@ -67,5 +74,37 @@ public class Curs {
     public void removeCursant(Cursant c) {
 
         this.cursantList.remove(c);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Curs curs)) return false;
+        return getNrCurs() == curs.getNrCurs() && Objects.equals(getDataStart(), curs.getDataStart()) && Objects.equals(getNomenclator().getDenumire(), curs.getNomenclator().getDenumire());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNrCurs(), getDataStart(), getNomenclator().getDenumire());
+    }
+
+    @Override
+    public String toString() {
+        return "Curs{" +
+                "nrCurs=" + nrCurs +
+                ", dataStart=" + dataStart +
+                ", dataSfarsit=" + dataSfarsit +
+                ", dataExamen=" + dataExamen +
+                ", furnizor=" + furnizor!=null?furnizor.getDenumire():"null" +
+                ", finantare=" + finantare!=null ?finantare.getDenumire():"null"+
+                ", oreTotal=" + oreTotal +
+                ", oreTeorie=" + oreTeorie +
+                ", orePractica=" + orePractica +
+                ", tipCertificat=" + tipCertificat.name() +
+                ", responsabil='" + responsabil + '\'' +
+                ", organizator='" + organizator + '\'' +
+                ", nrDispozitie='" + nrDispozitie + '\'' +
+                ", dataDisp=" + dataDisp +
+                '}';
     }
 }

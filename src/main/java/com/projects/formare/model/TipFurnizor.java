@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum TipFurnizor {
-    AJOFM("intern"),
+    AJOFM("AJOFM"),
     CRFPA("CRFPA"),
-    FURNIZOR("Furnizor privat");
+    FURNIZOR("FURNIZOR AUTORIZAT");
 
     private String label;
 
-    TipFurnizor(String label){
-        this.label=label;
+    TipFurnizor(String label) {
+        this.label = label;
     }
 
     public static TipFurnizor getByLabel(String lbl) {

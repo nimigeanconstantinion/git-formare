@@ -12,15 +12,15 @@ import java.util.List;
 @Getter
 
 @Entity(name = "Nomenclator")
-@Table(name = "nomenclator",indexes = @Index(columnList ="cod"))
+@Table(name = "nomenclator", indexes = @Index(columnList = "cod"))
 
 public class Nomenclator {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "nomcor_generator")
-    @SequenceGenerator(name = "nomcor_generator",initialValue = 1,allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "nomcor_generator")
+    @SequenceGenerator(name = "nomcor_generator", initialValue = 1, allocationSize = 1)
     private long id;
 
-    
+    private boolean activ=true;
     private String cod;
 
     private String denumire;

@@ -1,0 +1,44 @@
+version: '3.8'
+#
+#networks:
+#  newnet:
+#    driver: bridge
+#services:
+#
+#  formare-service:
+#    image: ion21/formare-api:latest
+#
+#    network_mode: "host"
+#    environment:
+#
+#        URL1: jdbc:mysql://10.30.33.201:3306/
+#        PASS1: root
+#        USER1: root
+
+services:
+#  mysql:
+#    image: mysql:latest
+#    network_mode: "host"
+#    environment:
+#      MYSQL_ROOT_PASSWORD: root
+#
+
+  formare:
+    image: ion21/formare-api:latest
+
+
+    network_mode: "host"
+    environment:
+#      MYSQL_ROOT_PASSWORD: 'root'
+      URL1: jdbc:mysql://192.168.0.112:3306/
+      PASS1: root
+      USER1: R@0t
+
+#    healthcheck:
+#      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+#      timeout: 20s
+#      retries: 10
+
+#    depends_on:
+#      mysql:
+#        condition: service_healthy

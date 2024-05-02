@@ -1,0 +1,43 @@
+server:
+    error:
+        include-binding-errors: always
+        include-message: always
+    port: 8080
+spring:
+    datasource:
+        datasource1:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            jdbcUrl: jdbc:mysql://codeplus.ddns.net:3306/formare_db?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+            password: root
+            username: R@0t
+        datasource2:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            jdbcUrl: jdbc:mysql://codeplus.ddns.net:3306/dtoschema?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+            password: root
+            username: R@0t
+#    datasource2:
+#        jpa:
+#            properties:
+#                hibernate-dialect: org.hibernate.dialect.MySQLDialect
+    jpa:
+        datasource1:
+            hibernate:
+                ddl-auto: update
+            open-in-view: false
+            properties:
+                hibernate:
+                    enable_lazy_load_no_trans: true
+                    format_sql: true
+                hibernate-dialect: org.hibernate.dialect.MySQLDialect
+            show-sql: true
+        datasource2:
+            hibernate:
+                ddl-auto:
+                    datasource2: none
+            properties:
+                hibernate:
+                    format_sql:
+                        datasource2: true
+                hibernate-dialect: org.hibernate.dialect.MySQLDialect
+            show-sql:
+                datasource2: true

@@ -21,9 +21,13 @@ public class Certificat {
 
     private TipCertificat tipCertificat;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Cursant cursant;
+
 
     private String serie;
     private String numar;
+
 
     private String nrDocIntrare;
     private Date dataDocIntrare;

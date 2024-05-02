@@ -25,4 +25,8 @@ public enum TipCurs {
         }
         return map.get(lbl);
     }
+
+    public static String getLabel(TipCurs n) {
+        return n.label;
+    }
 }

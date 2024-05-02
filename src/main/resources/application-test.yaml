@@ -1,0 +1,65 @@
+URL1: jdbc:mysql://codeplus.ddns.net:3306/
+USER1: root
+PASS1: R@0t
+#
+#spring:
+##  application:
+##    name: my-spring-boot-app
+##  profiles:
+##    active:
+##      test # Profilul de testare (test)
+#
+#  datasource:
+#    # Configurarea sursei de date MySQL principală (datasource1)
+#    dataSource1:
+#      jdbcUrl: jdbc:mysql://localhost:3306/formare_db?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+#      username: root
+#      password: root
+##      driver-class-name: com.mysql.cj.jdbc.Driver
+##      hikari:
+##        pool-size: 10
+##        max-pool-size: 20
+##        connection-timeout: 30000
+##        idle-timeout: 600000
+##    # Configurarea sursei de date MySQL secundară
+##    dataSource2:
+##      jdbcUrl: jdbc:mysql://codeplus.ddns.net:3306/dtoschema?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+##      username: root
+##      password: R@0t
+##      driver-class-name: com.mysql.cj.jdbc.Driver
+##      hikari:
+##        pool-size: 5
+##        max-pool-size: 10
+##        connection-timeout: 30000
+##        idle-timeout: 600000
+##  jpa:
+##    # Unitatea de persistență pentru sursa de date 1 (datasource1)
+##    dataSource1:
+###      persistence-context-ref: datasource1EntityManager
+##      properties:
+##        jakarta.persistence.entity-manager-factory-class: org.hibernate.jpa.HibernateEntityManagerFactory
+##        jakarta.persistence.provider: org.hibernate.jpa.HibernatePersistenceProvider
+##        hibernate.dialect: org.hibernate.dialect.MySQLDialect
+##        hibernate.hbm2ddl.auto: update
+##      hibernate:
+##        ddl-auto: update
+##        show-sql: true
+##        format-sql: true
+##    # Unitatea de persistență pentru sursa de date 2 (datasource2)
+##    dataSource2:
+###      persistence-context-ref: datasource2EntityManager
+##      properties:
+##        jakarta.persistence.entity-manager-factory-class: org.hibernate.jpa.HibernateEntityManagerFactory
+##        jakarta.persistence.provider: org.hibernate.jpa.HibernatePersistenceProvider
+##        hibernate.dialect: org.hibernate.dialect.MySQLDialect
+##        hibernate.hbm2ddl.auto: update
+##      hibernate:
+##        ddl-auto: none
+##        show-sql: true
+##        format-sql: true
+##
+##server:
+##  error:
+##    include-message: always
+##    include-binding-errors: always
+##  port: 8080

@@ -1,11 +1,13 @@
 package com.projects.formare.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -15,7 +17,7 @@ import java.util.List;
 
 @Entity(name = "Cursant")
 @Table(name = "cursanti")
-public class Cursant {
+public class Cursant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "cursant_generator")
     @SequenceGenerator(name = "cursant_generator", allocationSize = 1)
@@ -30,20 +32,28 @@ public class Cursant {
     private String nrContract;
     private Date dataContract;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<PerioadaSomaj> perioadaSomajList;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<StareCursant> stareCursantList;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Certificat> certificatList;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<PerioadaSomaj> perioadaSomajList = new HashSet<>();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CursantGrupTinta> cursantGrupTintaList;
+    private Set<StareCursant> stareCursantList = new HashSet<>();
 
-    private float mediaCurs;
-    private float medieExamenAbs;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,mappedBy = "cursant")
+    private Set<Certificat> certificatList = new HashSet<>();
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private NomenclatorGrupTinta cursantGrupTintaList;
 
+    private float mediaCurs = 0;
+    private float medieExamenAbs = 0;
+    private Date dataAbsolvirii;
+
+    public void addPerSomaj(PerioadaSomaj p){
+        this.getPerioadaSomajList().add(p);
+    }
+
+    public void addStareCursant(StareCursant st){
+        this.getStareCursantList().add(st);
+    }
 }

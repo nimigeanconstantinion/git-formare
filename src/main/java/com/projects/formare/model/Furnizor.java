@@ -23,5 +23,4 @@ public class Furnizor {
     private String denumire;
     private String codFiscal;
 
-    private TipFurnizor tipFurnizor;
 }

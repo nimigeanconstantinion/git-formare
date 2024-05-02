@@ -12,13 +12,13 @@ import java.util.Date;
 @Setter
 @Getter
 
-@Entity(name = "GrupTinta")
+@Entity(name = "NomenclatorGrupTinta")
 @Table(name = "nom_gruptinta")
 
 public class NomenclatorGrupTinta {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO,generator = "gen_gruptinta")
-    @SequenceGenerator(name = "gen_gruptinta",sequenceName = "gen_gruptinta",initialValue = 1)
+    @SequenceGenerator(name = "gen_gruptinta",sequenceName = "gen_gruptinta",allocationSize = 1)
     private long id;
 
     private int cod;

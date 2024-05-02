@@ -12,7 +12,7 @@ import java.util.List;
 @Qualifier("dataSource")
 public interface FurnizorRepository extends JpaRepository<Furnizor, Long> {
 
-    @Query(value = "select f from Furnizor f where upper(trim(f.denumire)) like '%?1%'")
+    @Query(value = "select a from Furnizor a where a.denumire like %?1% order by a.denumire asc")
     List<Furnizor> getFurnizByPartDen(String den);
 
 

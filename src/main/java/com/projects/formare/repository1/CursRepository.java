@@ -13,7 +13,6 @@ import java.util.Optional;
 @Qualifier("dataSource1")
 //@PersistenceContext(unitName = "primary")
 //@Qualifier("dataSource1")
-
 public interface CursRepository extends JpaRepository<Curs, Long> {
 
     @Query(value = "select c from Curs c where c.nrCurs=?1")

@@ -16,8 +16,8 @@ import java.util.Date;
 @Table(name = "nom_studii")
 public class NomenclatorStudii {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "gen_nomstudii")
-    @SequenceGenerator(name = "gen_nomstudii",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "gen_nomstudii")
+    @SequenceGenerator(name = "gen_nomstudii", allocationSize = 1)
     private long id;
 
     private int codStudii;
@@ -26,4 +26,10 @@ public class NomenclatorStudii {
     private boolean active;
     private Date dataActivarii;
     private Date dataModificarii;
+
+    public boolean equals(Object n) {
+         NomenclatorStudii newn=(NomenclatorStudii) n;
+         return this.codStudii==((NomenclatorStudii) n).codStudii;
+    }
+
 }

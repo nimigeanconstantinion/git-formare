@@ -20,7 +20,7 @@ public interface DTOAllRepo extends JpaRepository<DTOAll, Integer> {
     @Query(value = "select a from DTOAll a")
     List<DTOAll> mygetAll();
 
-    @Query(value = "select d.nrc from DTOAll d group by d.nrc")
+    @Query(value = "select d.nrc from DTOAll d where d.nrc>0 group by d.nrc")
     List<Integer> getAllCursuri();
 
     @Query(value = "select d from DTOAll d where d.nrc=?1")

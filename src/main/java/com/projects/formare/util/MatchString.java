@@ -1,4 +1,4 @@
-package com.projects.formare.utils;
+package com.projects.formare.util;
 
 import java.util.List;
 

@@ -15,11 +15,14 @@ import java.time.LocalDateTime;
 @Table(name = "perioadasomaj")
 public class PerioadaSomaj {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,generator = "person_generator")
-    @SequenceGenerator(name = "person_generator",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "person_generator")
+    @SequenceGenerator(name = "person_generator", allocationSize = 1)
     private long id;
 
     private String nrSomaj;
+
     private LocalDateTime dataStartSomaj;
     private LocalDateTime dataSfSomaj;
+    private boolean somerLungaDurata;
+    private LocalDateTime dataadd;
 }

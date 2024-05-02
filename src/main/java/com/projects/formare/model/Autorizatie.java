@@ -6,9 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -46,7 +44,7 @@ public class Autorizatie {
     private int totalOre, oreTeorie, orePractica;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Nomenclator nomenclator;
 
     private String bazaLegala;
@@ -56,14 +54,28 @@ public class Autorizatie {
 
     private int nivel;
 
-    @ElementCollection
-    private List<String> competente = new ArrayList<>();
+    @OneToMany(mappedBy = "autorizatie",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private Set<Competenta> competente = new HashSet<>();
 
     private LocalDateTime dateAdd;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Autorizatie that)) return false;
+        return Objects.equals(getNrAutorizatie(), that.getNrAutorizatie()) && Objects.equals(getDataAutorizatie(), that.getDataAutorizatie()) && Objects.equals(getNrRNFPA(), that.getNrRNFPA()) && Objects.equals(getDataRNFPA(), that.getDataRNFPA()) && getTipCurs() == that.getTipCurs() && Objects.equals(getNomenclator(), that.getNomenclator());
+    }
 
-    public void addCompetenta(String comp) {
-        if (!this.competente.contains(comp)) {
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNrAutorizatie(), getDataAutorizatie(), getNrRNFPA(), getDataRNFPA(), getTipCurs(), getNomenclator().getDenumire());
+    }
+
+
+    public void addCompetenta(Competenta comp) {
+        comp.setAutorizatie(this);
+        if (!this.getCompetente().contains(comp)) {
             this.competente.add(comp);
 
         }

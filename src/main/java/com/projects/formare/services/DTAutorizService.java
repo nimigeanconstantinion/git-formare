@@ -2,6 +2,7 @@ package com.projects.formare.services;
 
 import com.projects.formare.dto.DTAutorizatie;
 import com.projects.formare.model.Autorizatie;
+import com.projects.formare.model.Competenta;
 import com.projects.formare.model.Nomenclator;
 import com.projects.formare.model.TipCurs;
 import com.projects.formare.repository1.AutorizatieRepository;
@@ -40,8 +41,8 @@ public class DTAutorizService {
 
 
         try {
-            if (auto.isEmpty()) {
-                System.out.println("am gasit autoriz");
+            if (!auto.isPresent()) {
+                System.out.println("nu am gasit autoriz");
 
                 Autorizatie aut = new Autorizatie();
                 aut.setNrAutorizatie(dta.getNR());
@@ -68,11 +69,14 @@ public class DTAutorizService {
                 aut.setBazaLegala(dta.getBAZA_LEG());
                 aut.setCondAcces(dta.getCOND_ACCES());
                 aut.setNivel(0);
+                autorizatieRepository.saveAndFlush(aut);
+                aut=autorizatieRepository.findByNrandData(aut.getNrAutorizatie(),aut.getDataAutorizatie()).get();
                 for (int i = 1; i < 26; i++) {
                     String numeAtribut = "getCOMPET" + i;
                     String valoareAtribut = (String) dta.getClass().getMethod(numeAtribut).invoke(dta);
                     if (valoareAtribut.length() > 0) {
-                        aut.addCompetenta(valoareAtribut);
+
+                        aut.addCompetenta(new Competenta(aut,valoareAtribut));
                     }
                 }
 

@@ -1,0 +1,64 @@
+URL1: jdbc:mysql://localhost:3306/
+PASS1: root
+USER1: root
+MYTIME: ${spring.}
+spring:
+#  application:
+#    name: my-spring-boot-app
+  datasource:
+    # Configurarea sursei de date MySQL principală (datasource1)
+    dataSource1:
+      jdbcUrl: ${URL1}formare_db
+#      ?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      username: ${USER1}
+      password: ${PASS1}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        pool-size: 100
+        max-pool-size: 90
+        connection-timeout: 180000
+        idle-timeout: 20000
+        minimum-idle: 5
+    # Configurarea sursei de date MySQL secundară
+    dataSource2:
+      jdbcUrl: ${URL1}dtoschema?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+      username: ${USER1}
+      password: ${PASS1}
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      hikari:
+        pool-size: 100
+        max-pool-size: 10
+        connection-timeout: 180000
+        idle-timeout: 60000
+        minimum-idle: 5
+  jpa:
+    # Unitatea de persistență pentru sursa de date 1 (datasource1)
+    dataSource1:
+#      persistence-context-ref: datasource1EntityManager
+      properties:
+        jakarta.persistence.entity-manager-factory-class: org.hibernate.jpa.HibernateEntityManagerFactory
+        jakarta.persistence.provider: org.hibernate.jpa.HibernatePersistenceProvider
+        hibernate.dialect: org.hibernate.dialect.MySQLDialect
+        hibernate.hbm2ddl.auto: update
+      hibernate:
+        ddl-auto: update
+        show-sql: true
+        format-sql: true
+    # Unitatea de persistență pentru sursa de date 2 (datasource2)
+    dataSource2:
+#      persistence-context-ref: datasource2EntityManager
+      properties:
+        jakarta.persistence.entity-manager-factory-class: org.hibernate.jpa.HibernateEntityManagerFactory
+        jakarta.persistence.provider: org.hibernate.jpa.HibernatePersistenceProvider
+        hibernate.dialect: org.hibernate.dialect.MySQLDialect
+        hibernate.hbm2ddl.auto: update
+      hibernate:
+        ddl-auto: none
+        show-sql: true
+        format-sql: true
+
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+  port: 8080

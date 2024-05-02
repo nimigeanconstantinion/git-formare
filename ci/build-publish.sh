@@ -23,7 +23,7 @@
 #    # Ensure this points to the directory with Dockerfile
 
 docker tag \
-  "${USERNAME}/${APPNAME}" \
+  "${APPNAME}" \
   "${USERNAME}/${APPNAME}:${TAG}"
     echo "OK: GATA TAG"
 
